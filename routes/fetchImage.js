@@ -1,15 +1,17 @@
 import puppeteer from 'puppeteer';
 
-console.log('Default executable path:', puppeteer.executablePath());
-
 // Main function to fetch product image and title from a given e-commerce product URL
 export async function fetchProductImage(url) {
     let browser;
     try {
+
+        const executablePath = puppeteer.executablePath(); // Correct path on Render
+        console.log("Running Puppeteer with Chrome path:", executablePath);
+        
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'], // sandboxing config for deployment
-            executablePath:  puppeteer.executablePath(),
+            executablePath,
         });
 
         const page = await browser.newPage();
