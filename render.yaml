@@ -2,13 +2,15 @@ services:
   - type: web
     name: trybeforebuy
     env: node
-    plan: free  # Change if you need more resources
-    region: oregon  # Choose a region closer to your users
-    buildCommand: npm install
+    plan: free
+    region: oregon
+    buildCommand: npm install && npx puppeteer browsers install chrome
     startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 18
       - key: PORT
-        value: 8000
-        sync: false  # You will add this manually in Render
+        value: 5000
+        sync: false
+      - key: PUPPETEER_EXECUTABLE_PATH
+        value: /opt/render/.cache/puppeteer/chrome/linux-137.0.7151.55/chrome-linux64/chrome

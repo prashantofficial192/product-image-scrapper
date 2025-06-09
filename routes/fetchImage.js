@@ -4,14 +4,11 @@ import puppeteer from 'puppeteer';
 export async function fetchProductImage(url) {
     let browser;
     try {
-
-        const executablePath = puppeteer.executablePath(); // Correct path on Render
-        console.log("Running Puppeteer with Chrome path:", executablePath);
         
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'], // sandboxing config for deployment
-            executablePath,
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
         });
 
         const page = await browser.newPage();
