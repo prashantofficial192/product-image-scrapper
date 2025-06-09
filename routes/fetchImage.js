@@ -1,15 +1,15 @@
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
 // Main function to fetch product image and title from a given e-commerce product URL
 export async function fetchProductImage(url) {
     let browser;
     try {
-        console.log('Running Puppeteer with Chrome path:', process.env.PUPPETEER_EXECUTABLE_PATH);
+        // console.log('Running Puppeteer with Chrome path:', process.env.PUPPETEER_EXECUTABLE_PATH);
 
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'], // sandboxing config for deployment
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+            // executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
         });
 
         const page = await browser.newPage();
