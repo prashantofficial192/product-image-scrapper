@@ -6,7 +6,8 @@ export async function fetchProductImage(url) {
     try {
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'] // sandboxing config for deployment
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], // sandboxing config for deployment
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome',
         });
 
         const page = await browser.newPage();
