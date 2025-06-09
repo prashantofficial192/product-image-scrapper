@@ -1,5 +1,7 @@
 import puppeteer from 'puppeteer';
 
+console.log('Default executable path:', puppeteer.executablePath());
+
 // Main function to fetch product image and title from a given e-commerce product URL
 export async function fetchProductImage(url) {
     let browser;
@@ -7,7 +9,7 @@ export async function fetchProductImage(url) {
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'], // sandboxing config for deployment
-            executablePath: '/opt/render/.cache/puppeteer/chrome/linux-137.0.7151.55/chrome-linux64/chrome',
+            executablePath:  puppeteer.executablePath(),
         });
 
         const page = await browser.newPage();
