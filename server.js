@@ -38,6 +38,9 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+    const serverUrl = isProduction 
+        ? 'https://product-image-scrapper.onrender.com'
+        : `http://localhost:${PORT}`;
+    console.log(`✅ Server running at ${serverUrl}`);
     console.log(`🌍 Environment: ${isProduction ? 'Production' : 'Development'}`);
 });
