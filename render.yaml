@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: trybeforebuy
+    env: node
+    plan: free  # Change if you need more resources
+    region: oregon  # Choose a region closer to your users
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 8000
+        sync: false  # You will add this manually in Render

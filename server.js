@@ -6,10 +6,13 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production';
 
-// Configure CORS for the specific origin
+// Configure CORS based on environment
 const corsOptions = {
-    origin: ['https://trybeforebuy.space', '*'],
+    origin: isProduction 
+        ? ['https://trybeforebuy.space'] 
+        : ['http://localhost:3000', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
@@ -36,4 +39,5 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`✅ Server running at http://localhost:${PORT}`);
+    console.log(`🌍 Environment: ${isProduction ? 'Production' : 'Development'}`);
 });
