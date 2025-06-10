@@ -7,10 +7,11 @@ export async function fetchProductImage(url) {
     try {
         // console.log('Resolved Chrome Path:', puppeteer.executablePath());
 
+        const executablePath = process.env.CHROME_PATH || '/usr/bin/chromium-browser';
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: '/usr/bin/chromium'
+            executablePath
         });
 
         const page = await browser.newPage();

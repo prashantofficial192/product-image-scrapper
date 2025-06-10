@@ -6,8 +6,11 @@ services:
     buildCommand: |
       apt-get update
       apt-get install -y chromium
+      which chromium || which chromium-browser
       npm install
     startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 18
+      - key: CHROME_PATH
+        value: /usr/bin/chromium-browser
