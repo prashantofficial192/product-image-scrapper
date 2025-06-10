@@ -5,12 +5,9 @@ import puppeteer from 'puppeteer';
 export async function fetchProductImage(url) {
     let browser;
     try {
-        console.log('Resolved Chrome Path:', puppeteer.executablePath());
-
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: puppeteer.executablePath(),
+            args: ['--no-sandbox', '--disable-setuid-sandbox'] // sandboxing config for deployment
         });
 
         const page = await browser.newPage();
