@@ -1,5 +1,5 @@
 // Importing puppeteer for headless browser automation
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 // Main function to fetch product image and title from a given e-commerce product URL
 export async function fetchProductImage(url) {
@@ -10,7 +10,7 @@ export async function fetchProductImage(url) {
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: puppeteer.executablePath(),
+            executablePath: '/usr/bin/chromium'
         });
 
         const page = await browser.newPage();
