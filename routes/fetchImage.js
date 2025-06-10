@@ -5,7 +5,7 @@ import puppeteer from 'puppeteer-core';
 export async function fetchProductImage(url) {
     let browser;
     try {
-        console.log('Resolved Chrome Path:', puppeteer.executablePath());
+        // console.log('Resolved Chrome Path:', puppeteer.executablePath());
 
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
