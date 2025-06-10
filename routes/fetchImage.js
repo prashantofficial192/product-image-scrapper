@@ -1,17 +1,23 @@
-// Importing puppeteer for headless browser automation
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
+
 
 // Main function to fetch product image and title from a given e-commerce product URL
 export async function fetchProductImage(url) {
     let browser;
     try {
-        // console.log('Resolved Chrome Path:', puppeteer.executablePath());
-
-        const executablePath = process.env.CHROME_PATH || '/usr/bin/chromium-browser';
         browser = await puppeteer.launch({
             headless: 'new', // run in headless mode
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process', // Important for Render
+                '--disable-gpu'
+            ],
+            // executablePath:  puppeteer.executablePath(),
         });
 
         const page = await browser.newPage();
@@ -22,7 +28,7 @@ export async function fetchProductImage(url) {
         );
 
         // Navigate to the product URL
-        await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+        await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
         // 1. Try to get og:image (used for social sharing)
         const ogImage = await page.$$eval('meta[property="og:image"]', (meta) =>
