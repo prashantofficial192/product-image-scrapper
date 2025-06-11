@@ -17,8 +17,6 @@ export async function fetchProductImage(url) {
                 '--single-process',
                 '--disable-gpu'
             ],
-            executablePath: '/usr/bin/chromium'
-            // executablePath:  puppeteer.executablePath(),
         });
 
         const page = await browser.newPage();
