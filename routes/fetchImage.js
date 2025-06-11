@@ -14,9 +14,10 @@ export async function fetchProductImage(url) {
                 '--disable-accelerated-2d-canvas',
                 '--no-first-run',
                 '--no-zygote',
-                '--single-process', // Important for Render
+                '--single-process',
                 '--disable-gpu'
             ],
+            executablePath: '/usr/bin/chromium'
             // executablePath:  puppeteer.executablePath(),
         });
 

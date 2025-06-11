@@ -10,8 +10,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // Configure CORS based on environment
 const corsOptions = {
-    origin: isProduction 
-        ? ['https://trybeforebuy.space'] 
+    origin: isProduction
+        ? ['https://trybeforebuy.space']
         : ['http://localhost:3000', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
@@ -37,10 +37,14 @@ app.get('/', (req, res) => {
     res.send('🛒 Product Image Scraper is running!');
 });
 
-app.listen(PORT, () => {
-    const serverUrl = isProduction 
-        ? 'https://product-image-scrapper.onrender.com'
-        : `http://localhost:${PORT}`;
-    console.log(`✅ Server running at ${serverUrl}`);
-    console.log(`🌍 Environment: ${isProduction ? 'Production' : 'Development'}`);
+// app.listen(PORT, () => {
+//     const serverUrl = isProduction 
+//         ? 'https://product-image-scrapper.onrender.com'
+//         : `http://localhost:${PORT}`;
+//     console.log(`✅ Server running at ${serverUrl}`);
+//     console.log(`🌍 Environment: ${isProduction ? 'Production' : 'Development'}`);
+// });
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server started on port ${PORT}`);
 });
