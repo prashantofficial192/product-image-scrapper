@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { fetchProductImage } from './routes/fetchImage.js';
+import meeshoRotes from "./routes/meeshoRoutes.js"
+import myntraRoutes from "./routes/myntraRoutes.js"
 dotenv.config();
 
 const app = express();
@@ -32,6 +34,9 @@ app.post('/get-image', async (req, res) => {
     const result = await fetchProductImage(url);
     res.json(result);
 });
+
+app.use('/api', meeshoRotes);
+app.use('/api', myntraRoutes);
 
 app.get('/', (req, res) => {
     res.send('🛒 Product Image Scraper is running!');
